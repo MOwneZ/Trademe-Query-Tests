@@ -10,7 +10,7 @@ import java.net.*;
 import org.junit.Test;
 import org.json.*;
 
-public class apiTests {
+public class ApiTests {
 	
 	private static HttpURLConnection connection;
 	
@@ -60,6 +60,15 @@ public class apiTests {
 			}
 		}
 		assertEquals(criteria, output);
+	}
+	
+	@Test
+	public void validateBmwEntryAttributes() {
+		String output = "";
+		JSONArray jsonObject = new JSONArray(getJsonRequest("https://api.trademe.co.nz/v1/Listings/2149252463.json"));
+		for (int i = 0; i < jsonObject.length(); i++) {
+			System.out.println(jsonObject.getJSONObject(i));
+		}
 	}
 	
 }

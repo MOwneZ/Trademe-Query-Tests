@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 
 // Test class for the UI element testing for the Trademe Website.
 
-public class uiTests {
+public class UiTests {
  	
 	// Create a test driver (in Chrome engine)
 	WebDriver driver = new ChromeDriver();
@@ -32,14 +32,19 @@ public class uiTests {
 	
 	// function for getting necessary test attributes
 	public void testElementDetails() {
-		WebElement numPlateAttributeText = getElementTextContent("Number plate");
-		WebElement kilometresAttributeText = getElementTextContent("Kilometres");
-		WebElement bodyAttributeText = getElementTextContent("Body");
-		WebElement seatsAttributeText = getElementTextContent("Seats");
-		assertNotEquals(numPlateAttributeText.getText(), "");
-		assertNotEquals(kilometresAttributeText.getText(), "");
-		assertNotEquals(bodyAttributeText.getText(), "");
-		assertNotEquals(seatsAttributeText.getText(), "");
+		try {
+			WebElement numPlateAttributeText = getElementTextContent("Number plate");
+			WebElement kilometresAttributeText = getElementTextContent("Kilometres");
+			WebElement bodyAttributeText = getElementTextContent("Body");
+			WebElement seatsAttributeText = getElementTextContent("Seats");
+			assertNotEquals(numPlateAttributeText.getText(), "");
+			assertNotEquals(kilometresAttributeText.getText(), "");
+			assertNotEquals(bodyAttributeText.getText(), "");
+			assertNotEquals(seatsAttributeText.getText(), "");
+		}
+		catch (NoSuchElementException e) {
+			fail(String.format("Unable to find an element. %s", e));
+		}
 	}
 	
 	// Add the link to the used car entry to the parameter
