@@ -20,10 +20,13 @@ public class ApiTests {
 		String line;
 		StringBuffer responseContent = new StringBuffer();
 		String output = "";
+		// My experience in API requests was limited to begin with; googling can only do so much. I feel I am either setting the authString incorrectly, or my formatting is *slightly* off.
+		String authString = "OAuth oauth_consumer_key='54854C947B85637D8475535F9987C287',oauth_signature_method='PLAINTEXT',oauth_signature='453338BF3D945D65EFC60CDA23285BE8'";
 		try {
 			URL url = new URL(newUrl);
 			connection = (HttpURLConnection) url.openConnection();
 			connection.setRequestMethod("GET");
+			connection.setRequestProperty("Authorisation", authString);
 			connection.setConnectTimeout(5000);
 			connection.setReadTimeout(5000);
 			int status = connection.getResponseCode();
@@ -68,6 +71,7 @@ public class ApiTests {
 		JSONArray jsonObject = new JSONArray(getJsonRequest("https://api.trademe.co.nz/v1/Listings/2149252463.json"));
 		for (int i = 0; i < jsonObject.length(); i++) {
 			System.out.println(jsonObject.getJSONObject(i));
+			// here would be logic for identifying the necessary attributes/whether or not they existed.
 		}
 	}
 	
